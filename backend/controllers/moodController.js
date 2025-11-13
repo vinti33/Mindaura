@@ -1,86 +1,52 @@
 import Mood from "../models/Mood.js";
 
-// Helper to calculate longest streak (consecutive days with moods)
-const calculateLongestStreak = (moods) => {
-  if (!moods.length) return 0;
+// Log a mood
+export const logMood = async (req, res) => {
+  try {
+    const { mood } = req.body;
 
-  let longest = 1;
-  let currentStreak = 1;
-
-  for (let i = 1; i < moods.length; i++) {
-    const prevDate = new Date(moods[i - 1].date);
-    const currDate = new Date(moods[i].date);
-    const diffDays = Math.round((currDate - prevDate) / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 1) currentStreak++;
-    else currentStreak = 1;
-
-    if (currentStreak > longest) longest = currentStreak;
-  }
-  return longest;
-};
-
-// Helper to find most common mood
-const calculateMostCommonMood = (moods) => {
-  if (!moods.length) return "N/A";
-
-  const moodCount = {};
-  moods.forEach(m => {
-    moodCount[m.mood] = (moodCount[m.mood] || 0) + 1;
-  });
-
-  let maxCount = 0;
-  let mostCommon = "";
-  for (let mood in moodCount) {
-    if (moodCount[mood] > maxCount) {
-      maxCount = moodCount[mood];
-      mostCommon = mood;
+    if (!mood) {
+      return res.status(400).json({ message: "Mood is required" });
     }
+
+    const newMood = new Mood({
+      user: req.user.id,   // ✅ changed from userId → user
+      mood,
+      date: new Date(),
+    });
+
+    await newMood.save();
+    res.status(201).json({ message: "Mood logged successfully", newMood });
+  } catch (error) {
+    console.error("Error logging mood:", error);
+    res.status(500).json({ message: "Server error" });
   }
-
-  const percentage = ((maxCount / moods.length) * 100).toFixed(0);
-  return `${mostCommon} (${percentage}%)`;
 };
 
-// Helper to calculate average mood (simple approach)
-const calculateAverageMood = (moods) => {
-  if (!moods.length) return "N/A";
-
-  const moodIntensityMap = {
-    "Happy": 8,
-    "Calm": 7,
-    "Focused": 6,
-    "Tired": 4,
-    "Sad": 3,
-    "Anxious": 2,
-    "Stressed": 1
-  };
-
-  let total = 0;
-  moods.forEach(m => {
-    total += moodIntensityMap[m.mood] || 5; // Default 5 if unknown
-  });
-
-  const avg = total / moods.length;
-  if (avg >= 7) return "Calm/Happy";
-  if (avg >= 5) return "Focused/Neutral";
-  if (avg >= 3) return "Tired/Anxious";
-  return "Stressed";
-};
-
-// Controller to get user mood trends
+// Get mood trends
 export const getUserMoodTrends = async (req, res) => {
   try {
-    const userId = req.user.id; // From auth middleware
-    const moods = await Mood.find({ user: userId }).sort({ date: 1 });
+    // ✅ changed from userId → user
+    const moods = await Mood.find({ user: req.user.id }).sort({ date: 1 });
 
-    const totalEntries = moods.length;
-    const longestStreak = calculateLongestStreak(moods);
-    const mostCommonMood = calculateMostCommonMood(moods);
-    const averageMood = calculateAverageMood(moods);
+    // Calculate streak
+    let longestStreak = 0, currentStreak = 0;
+    let prevDate = null;
 
-    res.json({ totalEntries, longestStreak, mostCommonMood, averageMood, moods });
+    moods.forEach((m) => {
+      const moodDate = new Date(m.date);
+      if (prevDate) {
+        const diff = (moodDate - prevDate) / (1000 * 60 * 60 * 24);
+        if (diff <= 1.5) currentStreak++;
+        else currentStreak = 1;
+      } else currentStreak = 1;
+      prevDate = moodDate;
+      longestStreak = Math.max(longestStreak, currentStreak);
+    });
+
+    res.status(200).json({ moods, longestStreak });
   } catch (error) {
+    console.error("Error fetching mood trends:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

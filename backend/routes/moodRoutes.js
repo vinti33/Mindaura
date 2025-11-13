@@ -1,10 +1,13 @@
 import express from "express";
-import { getUserMoodTrends } from "../controllers/moodController.js";
+import { getUserMoodTrends, logMood } from "../controllers/moodController.js";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// For now, we’ll use mock data
-router.get("/trends", getUserMoodTrends);
+// Apply auth middleware to all mood routes
+router.post("/log", authMiddleware, logMood);
+router.get("/trends", authMiddleware, getUserMoodTrends);
+
 
 export default router;
 
