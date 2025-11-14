@@ -92,12 +92,12 @@
 
 // server.js
 // server.js
+import moodRoutes from "./routes/moodRoutes.js";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js";
-import moodRoutes from "./routes/moods.js";
 
 dotenv.config();
 
