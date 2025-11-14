@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
@@ -42,7 +43,7 @@ function Trends() {
         const fetchTrends = async () => {
             try {
                 // Assuming you've fixed the auth error or removed the header for testing
-                const res = await axios.get("http://localhost:5000/api/moods/trends"); 
+                const res = await axios.get(`${API_BASE_URL}/api/moods/trends`); 
                 
                 // Use default data structure if backend returns empty for initial safety
                 const data = res.data || {

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/auth.css";
@@ -29,7 +30,7 @@ function Signup() {
 
     try {
       // Call backend API to create user
-      const res = await axios.post("/api/auth/signup", user);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, user);
 
       setMessage(res.data.message || "Signup successful!");
 

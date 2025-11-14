@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";  
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -49,7 +50,7 @@ function LogMood() {
                 notes: notes,
             };
             
-            await axios.post("/api/moods/log", payload); // Send to backend
+            await axios.post(`${API_BASE_URL}/api/moods/log`, payload); // Send to backend
             
             // Success path: Set success message and navigate
             setMessage({ type: 'success', text: "Mood logged successfully! Redirecting..." });

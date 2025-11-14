@@ -1,8 +1,10 @@
+import { API_BASE_URL } from "../api";  
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/auth.css";
+
 
 function Login() {
   const navigate = useNavigate(); // ✅ Added navigate
@@ -20,8 +22,8 @@ function Login() {
     }
 
     try {
-      // API call for real login (replace URL with your backend)
-      const res = await axios.post("/api/auth/login", { email, password });
+      // API call for real login (replaced URL with backend)
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
 
       setMessage(res.data.message || "Login successful!");
 

@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "../api";  // add at top
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "../styles/chat.css";
+
 
 function ChatPage() {
   const [messages, setMessages] = useState([]);
@@ -19,7 +21,7 @@ function ChatPage() {
     setInput(""); // clear input
 
     try {
-      const res = await axios.post("http://localhost:5000/api/chat", {
+      const res = await axios.post(`${API_BASE_URL}/api/chat`, {
         message: input,
       });
 
