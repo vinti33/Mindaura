@@ -1,0 +1,187 @@
+.dashboard-container {
+  padding: 40px;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  min-height: 100vh;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  color: #1a237e;
+}
+
+/* 🌤️ Welcome Section */
+.welcome-card {
+  background: linear-gradient(135deg, #81d4fa, #0c3d53);
+  color: white;
+  border-radius: 25px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.3);
+  transition: all 0.4s ease;
+}
+
+.welcome-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.welcome-card h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.welcome-card p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.welcome-card button {
+  margin-top: 20px;
+  background: white;
+  color: #02151f;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.welcome-card button:hover {
+  background: #e1f5fe;
+  color: #01579b;
+  transform: translateY(-3px);
+}
+
+/* 📊 Info Cards Section */
+.info-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.info-card {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 100, 200, 0.1);
+  border-top: 4px solid #4fc3f7;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 150, 255, 0.2);
+}
+
+.info-card h3 {
+  color: #0277bd;
+  font-size: 1.1rem;
+}
+
+.info-card p {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* 💡 Suggestions Section */
+.suggestions {
+  margin-top: 50px;
+}
+
+.suggestions h2 {
+  color: #0277bd;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.suggestion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.suggestion-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 100, 200, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 4px solid transparent;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 150, 255, 0.15);
+}
+
+.suggestion-card.exercise {
+  border-top-color: #4fc3f7;
+}
+
+.suggestion-card.food {
+  border-top-color: #ffb74d;
+}
+
+.suggestion-card.songs {
+  border-top-color: #ba68c8;
+}
+
+.suggestion-card h4 {
+  color: #0288d1;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.suggestion-card p {
+  font-size: 0.95rem;
+  color: #37474f;
+}
+
+/* 💬 Chat Button */
+.chat-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #4fc3f7, #0288d1);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-btn:hover {
+  background: linear-gradient(135deg, #03a9f4, #0277bd);
+  transform: translateY(-3px);
+}
+
+/* ✨ Subtle Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-card,
+.info-card,
+.welcome-card {
+  animation: fadeInUp 0.6s ease;
+}

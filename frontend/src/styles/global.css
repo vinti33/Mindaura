@@ -1,0 +1,103 @@
+/* Global Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page Background Gradient */
+body {
+  background: linear-gradient(135deg, #b3e5fc, #e1bee7, #c8e6c9);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  min-height: 100vh;
+}
+
+/* Animated gradient */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Input & button defaults for consistency */
+input, button {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Scrollbar style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+/* Page content container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 100px; /* space for fixed navbar */
+}
+
+/* Navbar style */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  border-radius: 50px;
+  max-width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+  position: absolute; /* fixes navbar at top */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.navbar:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4a148c;
+  text-decoration: none;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #4a148c;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #6a1b9a;
+  transform: scale(1.05);
+}
+

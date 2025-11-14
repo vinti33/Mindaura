@@ -1,0 +1,223 @@
+/* LogMood.css - Styles for Mood Selection Page (Enhanced Appearance) */
+
+:root {
+    --color-text: #1f2937;
+    --color-surface: #ffffff;
+    --color-background: #f7f9fc; /* Very light, calming background */
+    --color-shadow-light: rgba(0, 0, 0, 0.05);
+    --color-shadow-strong: rgba(0, 0, 0, 0.15);
+    --color-primary-action: #6d28d9; /* Deep violet for action */
+    --color-border: #e2e8f0;
+}
+
+/* Ensure the body background is calming */
+body {
+    background-color: var(--color-background);
+}
+
+.logmood-container {
+    display: flex;
+    justify-content: center;
+    /* Uses flex-start to allow space for the floating navbar */
+    align-items: flex-start; 
+    min-height: calc(100vh - 80px); 
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.logmood-card {
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--color-surface);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--color-shadow-strong);
+    padding: 40px;
+}
+
+.logmood-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logmood-header h1 {
+    font-size: 2.2rem;
+    color: var(--color-primary-action);
+    font-weight: 800;
+}
+
+.logmood-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Mood Selection Grid */
+.mood-grid {
+    display: grid;
+    /* Responsive grid, tiles must be at least 120px wide */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mood-option {
+    --mood-color: #ccc; 
+    
+    /* Styled as a clear button/tile */
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 3px 8px var(--color-shadow-light);
+    
+    /* Center content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.mood-option:hover {
+    border-color: var(--mood-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mood-option.selected {
+    border-color: var(--mood-color);
+    background-color: var(--mood-color);
+    color: white;
+    transform: scale(1.05); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.mood-icon {
+    color: var(--mood-color);
+}
+
+.mood-option.selected .mood-icon {
+    color: white; 
+}
+
+.mood-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.mood-option.selected .mood-label {
+    color: white; 
+}
+
+/* Notes Section */
+.notes-section {
+    margin-bottom: 30px;
+}
+
+.notes-section label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.notes-section textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box; 
+    min-height: 120px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.notes-section textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-action);
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+}
+
+/* Submit Button & Feedback */
+.submit-mood-btn {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--color-primary-action);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.submit-mood-btn:hover:not(:disabled) {
+    background-color: #581c87; /* Darker purple */
+    transform: translateY(-2px);
+}
+
+.submit-mood-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.feedback-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.api-message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.api-message.success {
+    background-color: #d1fae5; 
+    color: #065f46; 
+    border: 1px solid #10b981;
+}
+
+.api-message.error {
+    background-color: #fee2e2; 
+    color: #991b1b; 
+    border: 1px solid #ef4444;
+}
+
+/* Animation for Loading State */
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .logmood-card {
+        padding: 30px 20px;
+    }
+    .logmood-header h1 {
+        font-size: 1.8rem;
+    }
+    .mood-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    .mood-option {
+        padding: 10px 5px;
+    }
+}

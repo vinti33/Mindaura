@@ -1,0 +1,113 @@
+/* Container */
+.chatbot-container {
+  width: 80%;              /* Cover 80% of screen width */
+  max-width: 800px;        /* Max width for large screens */
+  min-width: 300px;        /* Min width */
+  margin: 50px auto;       /* Center horizontally */
+  padding: 20px;
+  background: #e0f7ff;     /* light blue */
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;            /* Take 80% of viewport height */
+  min-height: 500px;       /* Minimum height */
+}
+
+/* Title */
+.chatbot-title {
+  text-align: center;
+  color: #007bff; /* blue */
+  margin-bottom: 15px;
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+  .chatbot-container {
+    width: 95%;           /* Almost full width on small screens */
+    margin: 20px auto;
+    height: 90vh;         /* Take most of mobile screen height */
+  }
+}
+
+/* Chat window */
+.chat-window {
+  background: #f0f8ff; 
+  border-radius: 15px;
+  flex: 1;                /* Take remaining space inside container */
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid #87cefa; 
+  min-height: 200px;
+}
+
+/* Chat messages */
+.chat-message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+/* User message */
+.user-msg {
+  align-self: flex-end;
+  background: #87cefa;
+  color: #000;
+}
+
+/* AI message */
+.ai-msg {
+  align-self: flex-start;
+  background: #cceeff;
+  color: #333;
+}
+
+/* Input area */
+.chat-input-area {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 2px solid #87cefa;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input-area button {
+  padding: 10px 20px;
+  background: #007bff;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.chat-input-area button:hover {
+  background: #0056b3;
+}
+
+/* Scrollbar for chat window */
+.chat-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 3px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: #e0f7ff;
+}

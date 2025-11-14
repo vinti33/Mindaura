@@ -1,0 +1,106 @@
+/* Auth.css */
+
+/* Full-page gradient background with subtle animation */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #b3e5fc, #e1bee7, #c8e6c9);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Form card with glass effect */
+.auth-form {
+  text-align: center;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: inherit;
+}
+
+/* Title */
+.auth-form h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #4a148c;
+  margin-bottom: 10px;
+}
+
+/* Input fields */
+.auth-form input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: rgba(255,255,255,0.6);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+  box-shadow: 0 0 8px rgba(106, 27, 154, 0.3);
+}
+
+/* Buttons container */
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.auth-form button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Signup button */
+.signup-btn {
+  background: white;
+  color: #6a1b9a;
+  border: 2px solid #6a1b9a;
+}
+
+.signup-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Login button */
+.login-btn {
+  background: #6a1b9a;
+  color: white;
+}
+
+.login-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Success/Error message */
+.auth-form p {
+  text-align: center;
+  font-weight: bold;
+  color: green;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
