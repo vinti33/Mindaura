@@ -51,8 +51,12 @@ function Signup() {
   };
 
   return (
-    <div className="auth-container">
-      <form className="auth-form" onSubmit={handleSubmit}>
+    <>
+      <div className="auth-container">
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Back to Home
+        </button>
+        <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
 
         {/* Display message */}
@@ -98,6 +102,7 @@ function Signup() {
         </p>
       </form>
     </div>
+    </>
   );
 }
 

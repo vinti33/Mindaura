@@ -71,9 +71,13 @@ function Trends() {
     
     // Extract data safely
     const { totalEntries, longestStreak, mostCommonMood, moods } = trendsData;
+    const sortedMoods = [...(moods || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return (
         <div className="trends-container">
+            <button className="back-btn" onClick={() => navigate("/dashboard")}>
+                ← Back to Dashboard
+            </button>
             <header className="trends-header pop-in-header">
                 <span className="header-icon">🌤️</span> {/* Sun/Cloud Icon */}
                 <h1>Your Mood Journey</h1>
@@ -92,10 +96,12 @@ function Trends() {
                     <span className="rainbow-icon">🌈</span> Recent Mood Timeline
                 </h2>
                 <div className="mood-timeline">
-                    {moods?.slice().reverse().map((m, index) => (
-    <MoodTimelineItem key={index} moodEntry={m} index={index} />
+                    {sortedMoods.map((m, index) => (
+                        <MoodTimelineItem key={m._id || index} moodEntry={m} index={index} />
                     ))}
-                    {moods?.length === 0 && <p className="no-data-msg">Log your first mood to see the timeline!</p>}
+                    
+                   
+                    {sortedMoods.length === 0 && <p className="no-data-msg">Log your first mood to see the timeline!</p>}
                 </div>
             </section>
 

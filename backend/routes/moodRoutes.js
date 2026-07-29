@@ -6,8 +6,8 @@ const router = express.Router();
 
 // Apply auth middleware to all mood routes
 router.post("/log", authMiddleware, logMood);
-router.get("/trends", authMiddleware, getUserMoodTrends,getTodayMoodStats);
-//router.get("/today", authMiddleware, getTodayMoodStats,getUserMoodTrends);
+router.get("/trends", authMiddleware, getUserMoodTrends);
+router.get("/today", authMiddleware, getTodayMoodStats);
 
 
 export default router;

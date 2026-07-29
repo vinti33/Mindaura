@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { API_BASE_URL } from "../api";
 import "../styles/chat.css";
 
 function Chat({ onClose }) {
@@ -11,22 +12,26 @@ function Chat({ onClose }) {
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!input) return;
+    if (!input.trim()) return;
 
     const userMessage = { role: "user", content: input };
-    setMessages([...messages, userMessage]);
+    const currentInput = input;
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/ai/ask`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ message: currentInput }),
       });
 
       const data = await res.json();
-      const botMessage = { role: "bot", content: data.reply };
-      setMessages(prev => [...prev, botMessage]);
+      const botMessage = { role: "bot", content: data.reply || "No response received" };
+      setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
       console.error("Chat Error:", err);
     }

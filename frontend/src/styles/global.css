@@ -101,3 +101,31 @@ input, button {
   transform: scale(1.05);
 }
 
+/* Global Back Button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #4a148c;
+  border: 1px solid rgba(74, 20, 140, 0.2);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease-in-out;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.back-btn:hover {
+  background: #4a148c;
+  color: #ffffff;
+  border-color: #4a148c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 20, 140, 0.25);
+}
+

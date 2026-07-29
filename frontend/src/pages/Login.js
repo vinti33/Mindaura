@@ -42,6 +42,9 @@ function Login() {
     <>
       <Navbar />
       <div className="auth-container">
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Back to Home
+        </button>
         <form className="auth-form" onSubmit={handleLogin}>
           <h2>Login</h2>
 

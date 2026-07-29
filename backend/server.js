@@ -102,7 +102,6 @@ import aiRoutes from "./routes/aiRoutes.js";
 
 
 dotenv.config();
-console.log(process.env.JWT_SECRET)
 const app = express();
 
 const allowedOrigins = [

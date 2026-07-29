@@ -141,9 +141,10 @@ function Dashboard() {
     fetchData();
   }, []);
 
+  
   const latestMoodLabel = moodData?.moods?.length
-    ? moodData.moods[moodData.moods.length - 1].mood
-    : "Unknown";
+  ? moodData.moods[0].mood   // newest mood
+  : "Unknown";
 
   const latestMood =
     latestMoodLabel in moodSuggestions ? latestMoodLabel : "Unknown";
@@ -153,6 +154,15 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginBottom: "10px" }}>
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Back to Home
+        </button>
+        <button className="back-btn" onClick={() => { localStorage.removeItem("token"); navigate("/login"); }}>
+          Logout 🚪
+        </button>
+      </div>
+
       {/* Welcome Card */}
       <div className="welcome-card pop-in">
         <div className="welcome-content">

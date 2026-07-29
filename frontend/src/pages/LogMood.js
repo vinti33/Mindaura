@@ -93,6 +93,9 @@ function LogMood() {
     return (
         <div className="logmood-container">
             <div className="logmood-card">
+                <button className="back-btn" onClick={() => navigate("/dashboard")}>
+                    ← Back to Dashboard
+                </button>
                 <header className="logmood-header">
                     <h1>How Are You Feeling Today?</h1>
                     <p>Select your current aura and add notes below.</p>
